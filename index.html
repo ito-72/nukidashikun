@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>話・シーン整列ツール</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+    }
+    table {
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+    }
+    #output {
+      white-space: pre-wrap;
+      border: 1px solid #ccc;
+      padding: 12px;
+      margin-top: 20px;
+      min-height: 300px;
+    }
+    @media print {
+      body {
+        margin: 0;
+      }
+      #inputArea, button {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>話・シーン整列ツール</h1>
+
+  <div id="inputArea">
+    <table id="inputTable">
+      <thead>
+        <tr>
+          <th>話</th>
+          <th>シーンNo.</th>
+          <th>備考</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><input></td><td><input></td><td><input></td></tr>
+      </tbody>
+    </table>
+    <button onclick="addRow()">行を追加</button>
+    <button onclick="submitData()">整列して表示</button>
+    <button onclick="window.print()">印刷</button>
+  </div>
+
+  <div id="output"></div>
+
+  <script>
+    function addRow() {
+      const row = document.createElement('tr');
+      row.innerHTML = '<td><input></td><td><input></td><td><input></td>';
+      document.querySelector('#inputTable tbody').appendChild(row);
+    }
+
+    async function submitData() {
+      const rows = document.querySelectorAll('#inputTable tbody tr');
+      const data = Array.from(rows).map(row => {
+        const cells = row.querySelectorAll('input');
+        return {
+          episode: cells[0].value.trim(),
+          scene: cells[1].value.trim(),
+          note: cells[2].value.trim()
+        };
+      });
+
+      const res = await fetch('/api/sortScenes', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ scenes: data })
+      });
+
+      const result = await res.json();
+      document.getElementById('output').textContent = result.sortedText;
+    }
+  </script>
+</body>
+</html>
