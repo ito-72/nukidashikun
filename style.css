@@ -49,6 +49,7 @@ input {
   border: 1px solid #f39c12;
   border-radius: 4px;
   transition: border 0.2s ease;
+  box-sizing: border-box; /* ✅ はみ出し防止！ */
 }
 
 input:focus {
@@ -85,7 +86,7 @@ button:hover {
   border-radius: 8px;
 }
 
-
+/* 印刷用スタイル */
 @media print {
   html, body {
     margin: 0;
@@ -106,7 +107,7 @@ button:hover {
     border: none;
     font-size: 26pt;
     line-height: 1.8;
-    min-height: unset; /* 👈 これで高さ制限解除 */
-    page-break-inside: avoid; /* 👈 ページ内で分割しないように指示 */
+    min-height: unset; /* 高さ制限解除 */
+    page-break-inside: avoid; /* ページ内で分割しないように */
   }
 }
