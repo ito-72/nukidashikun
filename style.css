@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: linear-gradient(135deg, #000000, #001f3f, #0074D9);
+  background-attachment: fixed;
+}
+
+body {
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  color: #eee;
+  padding: 40px;
+}
+
+h1 {
+  text-align: center;
+  font-size: 2em;
+  margin-bottom: 1em;
+  color: #fff;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #1a1a1a;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+th, td {
+  border: 1px solid #333;
+  padding: 10px;
+  text-align: center;
+  color: #fff;
+}
+
+th {
+  background-color: #292929;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  background: #111;
+  color: #fefefe;
+  border: 1px solid #f39c12;
+  border-radius: 4px;
+  transition: border 0.2s ease;
+}
+
+input:focus {
+  border-color: #ffb347;
+  outline: none;
+}
+
+button {
+  background: linear-gradient(45deg, #e67e22, #f39c12);
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  margin: 5px;
+  border-radius: 25px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: #ffb347;
+}
+
+#output {
+  white-space: pre-wrap;
+  background: #1c1c1c;
+  border: 1px solid #555;
+  padding: 20px;
+  margin-top: 30px;
+  min-height: 300px;
+  font-family: monospace;
+  color: #ccc;
+  border-radius: 8px;
+}
+
+@media print {
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    color: #000;
+  }
+  #inputArea, button {
+    display: none;
+  }
+  #output {
+    color: #000;
+    background: #fff;
+    border: none;
+  }
+}

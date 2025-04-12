@@ -1,40 +1,18 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
+
   <meta charset="UTF-8">
-  <title>話・シーン整列ツール</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      padding: 20px;
-    }
-    table {
-      border-collapse: collapse;
-      margin-bottom: 20px;
-    }
-    th, td {
-      border: 1px solid #ccc;
-      padding: 8px;
-    }
-    #output {
-      white-space: pre-wrap;
-      border: 1px solid #ccc;
-      padding: 12px;
-      margin-top: 20px;
-      min-height: 300px;
-    }
-    @media print {
-      body {
-        margin: 0;
-      }
-      #inputArea, button {
-        display: none;
-      }
-    }
-  </style>
+  <title>シーン抜き出し</title>
+ <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+
 </head>
+
 <body>
-  <h1>話・シーン整列ツール</h1>
+  <h1>シーン抜き出し</h1>
 
   <div id="inputArea">
     <table id="inputTable">
@@ -81,7 +59,12 @@
       });
 
       const result = await res.json();
-      document.getElementById('output').textContent = result.sortedText;
+      const lines = result.sortedText.split("\n\n").map(block => {
+        const [episodeLine, ...rest] = block.split(" ");
+        const strongEpisode = `<strong>${episodeLine}</strong>`;
+        return strongEpisode + " " + rest.join(" ");
+      });
+      document.getElementById('output').innerHTML = lines.join("<br><br>");
     }
   </script>
 </body>
