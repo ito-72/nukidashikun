@@ -21,6 +21,10 @@ h1 {
   color: #fff;
 }
 
+#inputArea {
+  text-align: center; /* ✅ ボタンを中央に */
+}
+
 table {
   border-collapse: collapse;
   background-color: #1a1a1a;
@@ -43,7 +47,7 @@ th {
 }
 
 input {
-  width: 80px; /* ✅ 横幅をコンパクトに統一 */
+  width: 80px; /* ✅ 幅を統一してコンパクトに */
   padding: 6px;
   background: #111;
   color: #fefefe;
@@ -64,7 +68,7 @@ button {
   color: white;
   border: none;
   padding: 10px 18px;
-  margin: 5px;
+  margin: 5px 10px; /* ✅ 間隔調整 */
   border-radius: 25px;
   font-size: 14px;
   font-weight: bold;
@@ -97,6 +101,10 @@ button:hover {
     color: #000;
     font-size: 20pt;
     line-height: 1.6;
+  }
+
+  h1 {
+    display: none; /* ✅ タイトル非表示 */
   }
 
   #inputArea, button {
