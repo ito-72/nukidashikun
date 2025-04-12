@@ -22,12 +22,13 @@ h1 {
 }
 
 table {
-  width: 100%;
   border-collapse: collapse;
   background-color: #1a1a1a;
   border-radius: 8px;
   overflow: hidden;
   margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 th, td {
@@ -42,14 +43,15 @@ th {
 }
 
 input {
-  width: 100%;
-  padding: 8px;
+  width: 80px; /* ✅ 横幅をコンパクトに統一 */
+  padding: 6px;
   background: #111;
   color: #fefefe;
   border: 1px solid #f39c12;
   border-radius: 4px;
   transition: border 0.2s ease;
-  box-sizing: border-box; /* ✅ はみ出し防止！ */
+  box-sizing: border-box;
+  font-size: 14px;
 }
 
 input:focus {
@@ -90,7 +92,7 @@ button:hover {
 @media print {
   html, body {
     margin: 0;
-    padding: 10mm; /* 小さめの余白にする */
+    padding: 10mm;
     background: #fff;
     color: #000;
     font-size: 20pt;
@@ -107,7 +109,7 @@ button:hover {
     border: none;
     font-size: 26pt;
     line-height: 1.8;
-    min-height: unset; /* 高さ制限解除 */
-    page-break-inside: avoid; /* ページ内で分割しないように */
+    min-height: unset;
+    page-break-inside: avoid;
   }
 }
