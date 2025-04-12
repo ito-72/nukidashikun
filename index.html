@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
-
   <meta charset="UTF-8">
   <title>シーン抜き出し</title>
- <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-
 </head>
-
 <body>
   <h1>シーン抜き出し</h1>
 
   <div id="inputArea">
+    <!-- ✅ ボタンを上に -->
+    <div>
+      <button onclick="addRow()">行を追加<br>Ctrl+Enter</button>
+      <button onclick="submitData()">整列して表示</button>
+      <button onclick="window.print()">印刷</button>
+    </div>
+
+    <!-- ⬇ テーブルは下に -->
     <table id="inputTable">
       <thead>
         <tr>
@@ -27,9 +30,6 @@
         <tr><td><input></td><td><input></td><td><input></td></tr>
       </tbody>
     </table>
-    <button onclick="addRow()">行を追加</button>
-    <button onclick="submitData()">整列して表示</button>
-    <button onclick="window.print()">印刷</button>
   </div>
 
   <div id="output"></div>
@@ -38,7 +38,12 @@
     function addRow() {
       const row = document.createElement('tr');
       row.innerHTML = '<td><input></td><td><input></td><td><input></td>';
-      document.querySelector('#inputTable tbody').appendChild(row);
+      const tbody = document.querySelector('#inputTable tbody');
+      tbody.appendChild(row);
+
+      // ✅ 最初のセルに自動でフォーカス
+      const inputs = row.querySelectorAll('input');
+      if (inputs[0]) inputs[0].focus();
     }
 
     async function submitData() {
@@ -62,10 +67,18 @@
       const lines = result.sortedText.split("\n\n").map(block => {
         const [episodeLine, ...rest] = block.split(" ");
         const strongEpisode = `<strong>${episodeLine}</strong>`;
-        return strongEpisode + " " + rest.join(" ");
+        return strongEpisode + "&nbsp;&nbsp;&nbsp;&nbsp;" + rest.join(" ");
       });
       document.getElementById('output').innerHTML = lines.join("<br><br>");
     }
+
+    // ✅ Ctrl + Enter で行追加
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' && e.ctrlKey) {
+        e.preventDefault();
+        addRow();
+      }
+    });
   </script>
 </body>
 </html>
