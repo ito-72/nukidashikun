@@ -85,23 +85,28 @@ button:hover {
   border-radius: 8px;
 }
 
+
 @media print {
   html, body {
     margin: 0;
-    padding: 20px;
+    padding: 10mm; /* 小さめの余白にする */
     background: #fff;
     color: #000;
-    font-size: 20pt; /* 👈 ここでフォントサイズUP */
+    font-size: 20pt;
     line-height: 1.6;
   }
+
   #inputArea, button {
     display: none;
   }
+
   #output {
     color: #000;
     background: #fff;
     border: none;
-    font-size: 26pt; /* 👈 出力結果はさらに大きくしてもOK */
+    font-size: 26pt;
     line-height: 1.8;
+    min-height: unset; /* 👈 これで高さ制限解除 */
+    page-break-inside: avoid; /* 👈 ページ内で分割しないように指示 */
   }
 }
